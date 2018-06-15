@@ -1,0 +1,50 @@
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+using namespace std;
+int num[1000010],count=0;
+void produce(int n)
+{
+    num[0]=0;
+    for(int i=1;i<n;i++)
+    {
+        num[i]=num[i-1]+rand()%20+1;
+        printf("%d\n",num[i]);
+    }
+}
+int binary_search(int a[],int m,int n)
+{
+    int left=0,right=n-1;
+    while(left<=right){
+        int middle=(left+right)/2;
+        if(m==a[middle])
+        {
+            count++;
+            return middle;
+        }
+        else if(m>a[middle])
+        {
+            count++;
+            left=middle+1;
+        }
+        else
+        {
+            count++;
+            right=middle-1;
+        }
+    }
+    return -1;
+}
+int main()
+{
+    int n,m;
+    printf("请输入所需查询的数字及查询数组的数的个数：\n");
+    scanf("%d%d",&m,&n);
+    produce(n);
+    int site=binary_search(num,m,n);
+    if(site!=-1)
+        printf("\n查到此数，位置在第%d位上，查找次数：%d\n",site+1,count);
+    else
+        printf("\n未查到此数！\n");
+    return 0;
+}
