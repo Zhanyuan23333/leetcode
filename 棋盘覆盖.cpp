@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
 int title = 0;
+int Board[109][109];
 void ChessBoard(int tr ,int tc, int dr ,int dc , int size1)
 {
     if(size1==1) return;
@@ -15,10 +16,10 @@ void ChessBoard(int tr ,int tc, int dr ,int dc , int size1)
     }
 
     if(dr<tr+s&&dc>=tc+s){
-        ChessBoard(tr,tc+s-1,dr,dc,s);
+        ChessBoard(tr,tc+s,dr,dc,s);
     }else{
         Board[tr+s-1][tc+s] = t;
-        ChessBoard(tr,tc+s-1,tr+s-1,tc+s,s);
+        ChessBoard(tr,tc+s,tr+s-1,tc+s,s);
     }
 
     if(dr>=tr+s&&dc<tc+s){
@@ -40,10 +41,12 @@ void ChessBoard(int tr ,int tc, int dr ,int dc , int size1)
 
 int main()
 {
-    int Board[109][109];
-    for(int i =0;i<109;i++){
-        for(int j=0;j<109;j++){
 
+    ChessBoard(0,0,0,1,4);
+    for(int i =0;i<4;i++){
+        for(int j=0;j<4;j++){
+                cout<<Board[i][j]<<" ";
         }
+        cout<<endl;
     }
 }

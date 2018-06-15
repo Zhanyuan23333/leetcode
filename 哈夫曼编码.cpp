@@ -66,7 +66,7 @@ void huffman(int value[])
         priQueue.push(*root);
     }
     left1 = priQueue.top();
-    priQueue.pop();
+
     dfs(&left1,0);
 }
 
